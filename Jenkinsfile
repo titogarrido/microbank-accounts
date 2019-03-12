@@ -1,14 +1,9 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent any
   stages {
-    stage('test') {
+    stage('Build') {
       steps {
-        sh 'python --version'
+        sh 'docker build -t titogarrido/microbank-account:latest .'
       }
     }
   }
