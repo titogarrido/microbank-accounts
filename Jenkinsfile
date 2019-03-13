@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-	containerID = sh (
+	def containerID = sh (
 	    script: "docker run -d --rm titogarrido/microbank-accounts:${BUILD_NUMBER}",
 	    returnStdout: true
 	).trim()
