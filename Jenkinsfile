@@ -1,15 +1,19 @@
 pipeline {
   agent {
-    dockerfile {
-      filename 'Dockerfile'
+    node {
+      label 'docker'
     }
 
   }
   stages {
-    stage('Checking environment') {
+    stage('Building image') {
       steps {
-        sh '''python --version
-pip freeze'''
+        sh 'docker build -t microbank-account:B${BUILD_NUMBER} -f Dockerfile .'
+      }
+    }
+    stage('testing') {
+      steps {
+        sh 'pip freeze'
       }
     }
   }
