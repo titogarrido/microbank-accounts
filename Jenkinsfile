@@ -6,10 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('Checking environment') {
+    stage('Testing') {
       steps {
-        sh '''python --version
-pip freeze'''
+        sh 'docker run --rm microbank-account pytest'
       }
     }
   }
