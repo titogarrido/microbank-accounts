@@ -2,4 +2,4 @@
 
 echo "starting accounts api"
 
-python accounts.py
+python api/run.py
