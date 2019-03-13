@@ -13,7 +13,7 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 
 # add app
-COPY api/run.py /usr/src/app/api
+COPY api/run.py /usr/src/app/api/run.py
 
 EXPOSE 5000
 
