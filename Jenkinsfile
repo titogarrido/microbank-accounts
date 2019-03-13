@@ -1,9 +1,15 @@
 pipeline {
-  agent any
+  agent {
+    dockerfile {
+      filename 'Dockerfile'
+    }
+
+  }
   stages {
-    stage('Checkout') {
+    stage('Checking environment') {
       steps {
-        git(url: 'https://github.com/titogarrido/microbank-accounts', branch: 'master')
+        sh '''python --version
+pip freeze'''
       }
     }
   }
