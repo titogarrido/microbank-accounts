@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'docker run -it --rm titogarrido/microbank-accounts:${BUILD_NUMBER}'
+        sh 'docker run -d --rm titogarrido/microbank-accounts:${BUILD_NUMBER}'
       }
     }
   }
