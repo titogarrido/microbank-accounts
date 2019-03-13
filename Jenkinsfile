@@ -10,9 +10,6 @@ pipeline {
       steps {
         sh 'docker run -it --rm titogarrido/microbank-accounts:${BUILD_NUMBER}'
       }
-      steps {
-        sh 'docker run --rm titogarrido/microbank-accounts:${BUILD_NUMBER} pytest'
-      }
     }
   }
 }
