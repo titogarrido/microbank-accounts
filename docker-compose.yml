@@ -1,7 +1,7 @@
 version: '3'
 services:
   accounts:
-    image: titogarrido/microbank-accounts:${BUILD_NUMBER}
+    image: titogarrido/microbank-accounts
     build: .
     ports:
      - "5000:5000"
