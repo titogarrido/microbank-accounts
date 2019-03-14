@@ -14,8 +14,9 @@ pipeline {
         }
 
         echo "ContainerID: ${containerID}"
-        sh "docker exec -i ${containerID} pytest --junit-xml=tests/results.xml"
+        sh "docker exec -i ${containerID} py.test --cov-report xml:tests/coverage.xml --cov=api --junit-xml=tests/results.xml tests/"
         sh "docker cp ${containerID}:/usr/src/app/tests/results.xml results.xml"
+        sh "docker cp ${containerID}:/usr/src/app/tests/coverage.xml coverage.xml"
         sh 'docker-compose down'
         sh 'docker-compose rm'
       }
