@@ -8,7 +8,7 @@ from helpers.custom_fields import Integer, Date, DateTime, Email, String, Float,
 
 ##### Database Connection #####
 from pymongo import MongoClient
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongo', 27017)
 db = client['account-database']
 collection = db['account-collection']
 ##############################
