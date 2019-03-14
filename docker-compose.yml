@@ -3,7 +3,7 @@ services:
   accounts:
     build:
       dockerfile: Dockerfile
-      image: titogarrido/microbank-accounts:${BUILD_NUMBER}
+    image: titogarrido/microbank-accounts:${BUILD_NUMBER}
     ports:
      - "5000:5000"
   mongo:
