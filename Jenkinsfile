@@ -8,24 +8,16 @@ pipeline {
       }
     }
     stage('Test') {
-          steps {
-            script {
-              containerID = sh( script: "docker-compose ps -q accounts", returnStdout: true)
-            }
-            echo "ContainerID: ${containerID}"
-            sh "docker exec -it ${containerID} pytest --junit-xml=tests/results.xml"
-            sh "docker cp ${containerID}:tests/results.xml results.xml"
-            sh "docker-compose stop"
-          }
-
-
-        echo "ContainerID: ${containerID}"
+      steps {
         script {
-          containerID = sh( script: "docker exec -i ${containerID} pytest --junit-xml=tests/results.xml", returnStdout: true)
+          containerID = sh( script: "docker-compose ps -q accounts", returnStdout: true)
         }
 
+        echo "ContainerID: ${containerID}"
+        sh "docker exec -it ${containerID}pytest --junit-xml=​tests/results.xml"
         sh "docker cp ${containerID}:tests/results.xml results.xml"
-        sh 'docker-compose stop'
+        sh "docker-compose stop"
+      }
     }
   }
 }
