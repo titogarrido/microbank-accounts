@@ -24,21 +24,9 @@ pipeline {
     stage('Finishing') {
       steps {
         junit(testResults: 'results.xml', healthScaleFactor: 1)
+        cobertura(coberturaReportFile: 'coverage.xml', autoUpdateHealth: true, autoUpdateStability: true)
       }
     }
-/*  stage('Deploy') {
-      steps {
-        script {
-          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-
-            def customImage = docker.build("${registry}:${BUILD_NUMBER}")
-
-            customImage.push()
-          }
-        }
-
-      }
-    } */
   }
   environment {
     registry = 'titogarrido/microbank-accounts'
