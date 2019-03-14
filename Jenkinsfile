@@ -15,11 +15,9 @@ pipeline {
               containerID = sh( script: "docker-compose ps -q accounts", returnStdout: true)
             }
             echo "ContainerID: ${containerID}"
-            script {
-              containerID = sh( script: "docker exec -it ${containerID} pytest --junit-xml=tests/results.xml", returnStdout: true)
-            }
+            sh "docker exec -it ${containerID} pytest --junit-xml=tests/results.xml"
             sh "docker cp ${containerID}:tests/results.xml results.xml"
-            sh 'docker-compose stop'
+            sh "docker-compose stop"
           }
         }
         stage('') {
