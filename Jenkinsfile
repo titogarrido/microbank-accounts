@@ -27,7 +27,8 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'time'
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
+        customImage.push()
       }
     }
   }
