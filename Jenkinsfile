@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "titogarrido/microbank-accounts"
+    registryCredential = 'dockerhub'
+  }
   agent any
   stages {
     stage('Build') {
@@ -28,9 +32,9 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-                docker.withRegistry('https://registry.example.com', 'credentials-id') {
+                docker.withRegistry('', 'docker-hub-credentials	') {
 
-                    def customImage = docker.build("my-image:${env.BUILD_ID}")
+                    def customImage = docker.build("${registry}:${BUILD_NUMBER}")
 
                     /* Push the container to the custom Registry */
                     customImage.push()
