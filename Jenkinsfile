@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Archive Tests') {
       steps {
-        junit(testResults: 'results.txt', healthScaleFactor: 1)
+        junit(testResults: 'results.xml', healthScaleFactor: 1)
       }
     }
   }
