@@ -20,17 +20,10 @@ pipeline {
         sh 'docker-compose rm'
       }
     }
-    stage('Archive Tests') {
+    stage('Finishing') {
       steps {
         junit(testResults: 'results.xml', healthScaleFactor: 1)
       }
     }
-  }
-  post {
-    always {
-      junit 'results.xml'
-
-    }
-
   }
 }
