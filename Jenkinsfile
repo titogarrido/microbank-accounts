@@ -25,20 +25,19 @@ pipeline {
         junit(testResults: 'results.xml', healthScaleFactor: 1)
       }
     }
-    stage('Deploy') {
+/*  stage('Deploy') {
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
 
             def customImage = docker.build("${registry}:${BUILD_NUMBER}")
 
-            /* Push the container to the custom Registry */
             customImage.push()
           }
         }
 
       }
-    }
+    } */
   }
   environment {
     registry = 'titogarrido/microbank-accounts'
