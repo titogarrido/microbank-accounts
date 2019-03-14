@@ -1,9 +1,8 @@
 version: '3'
 services:
   accounts:
-    build:
-      dockerfile: Dockerfile
     image: titogarrido/microbank-accounts:${BUILD_NUMBER}
+    build: .
     ports:
      - "5000:5000"
   mongo:
