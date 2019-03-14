@@ -1,8 +1,4 @@
 pipeline {
-  environment {
-    registry = "titogarrido/microbank-accounts"
-    registryCredential = 'dockerhub'
-  }
   agent any
   stages {
     stage('Build') {
@@ -32,16 +28,21 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-                docker.withRegistry('', 'docker-hub-credentials	') {
+          docker.withRegistry('', 'docker-hub-credentials') {
 
-                    def customImage = docker.build("${registry}:${BUILD_NUMBER}")
+            def customImage = docker.build("${registry}:${BUILD_NUMBER}")
 
-                    /* Push the container to the custom Registry */
-                    customImage.push()
-                }
-        echo "Deploy: ${customImage}"
+            /* Push the container to the custom Registry */
+            customImage.push()
+          }
+          echo "Deploy: ${customImage}"
         }
+
       }
     }
+  }
+  environment {
+    registry = 'titogarrido/microbank-accounts'
+    registryCredential = 'dockerhub'
   }
 }
