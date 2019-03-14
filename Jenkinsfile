@@ -28,7 +28,7 @@ pipeline {
 /*  stage('Deploy') {
       steps {
         script {
-          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
 
             def customImage = docker.build("${registry}:${BUILD_NUMBER}")
 
@@ -41,6 +41,6 @@ pipeline {
   }
   environment {
     registry = 'titogarrido/microbank-accounts'
-    registryCredential = 'dockerhub'
+    registryCredential = 'docker-hub-credentials'
   }
 }
