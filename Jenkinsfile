@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'export BUILD_NUMBER=${BUILD_NUMBER}'
         sh 'docker-compose up -d'
       }
     }
@@ -18,8 +19,5 @@ pipeline {
         sh "docker-compose stop"
       }
     }
-  }
-  environment {
-    BUILD_NUMBER = ${BUILD_NUMBER}
   }
 }
