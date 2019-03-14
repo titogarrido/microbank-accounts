@@ -20,11 +20,14 @@ pipeline {
             sh "docker-compose stop"
           }
         }
-        stage('') {
-          steps {
-            echo 'ieie'
-          }
+
+        echo "ContainerID: ${containerID}"
+        script {
+          containerID = sh( script: "docker exec -i ${containerID} pytest --junit-xml=tests/results.xml", returnStdout: true)
         }
+
+        sh "docker cp ${containerID}:tests/results.xml results.xml"
+        sh 'docker-compose stop'
       }
     }
   }
