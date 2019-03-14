@@ -25,5 +25,10 @@ pipeline {
         junit(testResults: 'results.xml', healthScaleFactor: 1)
       }
     }
+    stage('Deploy') {
+      steps {
+        sh 'time'
+      }
+    }
   }
 }
