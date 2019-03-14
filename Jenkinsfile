@@ -15,7 +15,7 @@ pipeline {
 
         echo "ContainerID: ${containerID}"
         script {
-          containerID = sh( script: "docker exec -it ${containerID} pytest --junit-xml=tests/results.xml", returnStdout: true)
+          containerID = sh( script: "docker exec -i ${containerID} pytest --junit-xml=tests/results.xml", returnStdout: true)
         }
 
         sh "docker cp ${containerID}:tests/results.xml results.xml"
