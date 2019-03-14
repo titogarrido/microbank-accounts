@@ -7,7 +7,7 @@ pipeline {
         sh 'docker-compose up -d'
       }
     }
-        stage('Test') {
+    stage('Test') {
           steps {
             script {
               containerID = sh( script: "docker-compose ps -q accounts", returnStdout: true)
@@ -17,7 +17,7 @@ pipeline {
             sh "docker cp ${containerID}:tests/results.xml results.xml"
             sh "docker-compose stop"
           }
-        }
+
 
         echo "ContainerID: ${containerID}"
         script {
@@ -26,5 +26,6 @@ pipeline {
 
         sh "docker cp ${containerID}:tests/results.xml results.xml"
         sh 'docker-compose stop'
-      } 
+    }
+  }
 }
