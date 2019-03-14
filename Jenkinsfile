@@ -7,8 +7,6 @@ pipeline {
         sh 'docker-compose up -d'
       }
     }
-    stage('Test') {
-      parallel {
         stage('Test') {
           steps {
             script {
@@ -28,7 +26,5 @@ pipeline {
 
         sh "docker cp ${containerID}:tests/results.xml results.xml"
         sh 'docker-compose stop'
-      }
-    }
-  }
+      } 
 }
