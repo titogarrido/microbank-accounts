@@ -21,7 +21,7 @@ pipeline {
         sh 'docker-compose rm'
       }
     }
-    stage('Finishing') {
+    stage('Exporting tests report') {
       steps {
         junit(testResults: 'results.xml', healthScaleFactor: 1)
         cobertura(coberturaReportFile: 'coverage.xml', autoUpdateHealth: true, autoUpdateStability: true)
