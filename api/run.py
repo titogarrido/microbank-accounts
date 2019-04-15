@@ -21,7 +21,6 @@ ns = api.namespace('accounts', description='Accounts related operations')
 
 
 account = api.model('account', {
-    #'_id': fields.String(required=False, description='The account unique identifier'),
     'account_id': Integer(required=True, description='The account unique identifier'),
     'type': String(required=True, description='Account type, checking, saving'),
     'name': String(required=True, description='First name of the account owner'),
@@ -75,7 +74,7 @@ class UpdateBalance(Resource):
     @ns.doc('add_balance')
     @ns.marshal_list_with(account)
     def patch(self, account_id, amount):
-        '''Fetch a given resource'''
+        '''Update user balance'''
         try:
             amount=float(amount)
         except:
